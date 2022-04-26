@@ -19,7 +19,7 @@
                 <input type="text" name="descripcion" id="descrip" class="form-control">
             </div>
             <div class="form-group">
-                <label for="descrip">Ingrese una imagen</label>
+                <label for="image">Ingrese una imagen</label>
                 <br>
                 <input type="file" name="imagen" id="imagen">
             </div>

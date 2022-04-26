@@ -43,6 +43,13 @@ class LaraController extends Controller
         //crear una instancia del modelo curso para manipular la tabla
         $cursito->nombre = $request->input('nombre');
         $cursito->descripcion = $request->input('descripcion');
+
+        //Validamo si viene un archivo desde el campo equis...
+        //En el campo imagen se almacena el nombre del archivo que se guardara
+        //en storage/app/public e indicamos uan subcarpeta
+        if($request->hasFile('imagen')){
+            $cursito->imagen = $request->file('imagen')->store('public/cursos');
+        }
         // Almacena la informaion de el formulario
         $cursito->save();
         return 'El curso se creo de manera exitosa';
