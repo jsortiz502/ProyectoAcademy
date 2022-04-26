@@ -7,7 +7,7 @@
 @section('contenido')
 
         <div class="text-center"><h4>Creacion del nuevo curso</h4></div>
-        <form action="/laravel" method="POST">
+        <form action="/laravel" method="POST" enctype="multipart/form-data">
             {{--csrf es una proteccion contra ataques--}}
             @csrf
             <div class="form-group">
@@ -17,6 +17,11 @@
             <div class="form-group">
                 <label for="descrip">Ingrese una descripcion</label>
                 <input type="text" name="descripcion" id="descrip" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="descrip">Ingrese una imagen</label>
+                <br>
+                <input type="file" name="imagen" id="imagen">
             </div>
             <div class="text-center"><button class="btn btn-primary" type="submit">Crear</button></div>
         </form>

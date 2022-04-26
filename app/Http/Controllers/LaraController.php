@@ -14,7 +14,10 @@ class LaraController extends Controller
      */
     public function index()
     {
-        return view('cursos.index');
+        // el metodo all obtiene todo de la tabla como un array o lista
+        $cursito = Curso::all();
+        //compact adjunta la informacion deseada a la vista para usarla en la vista
+        return view('cursos.index', compact('cursito'));
     }
 
     /**
