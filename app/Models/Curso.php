@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Curso extends Model
 {
     use HasFactory;
+    //permite accedes a los campos a la tabla y modificarlos
+    protected $fillable = ['nombre', 'descripcion', 'imagen'];
 }

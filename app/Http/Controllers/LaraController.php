@@ -63,7 +63,8 @@ class LaraController extends Controller
      */
     public function show($id)
     {
-        //
+        $cursito = Curso::find($id);
+        return view('cursos.show', compact('cursito'));
     }
 
     /**
@@ -74,7 +75,10 @@ class LaraController extends Controller
      */
     public function edit($id)
     {
-        //
+        //con firstOrFail captura la excepcion y muestra el primer registo
+        //encontrado en la tabla de la BD o arroja error.
+        $cursito = Curso::where('id',$id)->firstOrFail();
+        return view('cursos.edit', compact('cursito'));
     }
 
     /**
@@ -86,7 +90,18 @@ class LaraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /* Rellenar todos los campos del curso con la informacion
+        que viene de la peticion request */
+        $cursito = Curso::find($id);
+        //con el all actualizara toda la informacion sean texto y numero
+        $cursito->fill($request->except('imagen'));
+        if($request->hasFile('imagen')){
+            $cursito->imagen = $request->file('imagen')->store('public/cursos');
+        }
+        //con el except actualiza todos los campos menos al que hacemos referencia
+        //La imagen se procesa de diferente imagen
+        $cursito->save();
+        return 'Su curso fue actualizado';
     }
 
     /**
@@ -99,4 +114,5 @@ class LaraController extends Controller
     {
         //
     }
+
 }
