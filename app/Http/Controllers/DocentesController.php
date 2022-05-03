@@ -100,6 +100,11 @@ class DocentesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $docente = Docente::find($id);
+        //return $docente;
+        $urlImagenBD = $docente->foto;
+        //return $urlImagenBD;
+        $nombreImagen = str_replace('public/','\storage\\',$urlImagenBD);
+        return $nombreImagen;
     }
 }
