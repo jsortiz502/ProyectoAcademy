@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Micontroller;
 use App\Http\Controllers\Precios;
 use App\Http\Controllers\LaraController;
-use App\Http\Controllers\Nosotros;
-use App\Http\Controllers\Docentes;
+use App\Http\Controllers\DocentesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +37,6 @@ Route::get('precio/{costo}', [Precios::class, 'precios']);
 
 Route::resource('laravel', LaraController::class);
 
-Route::get('nosotros', [Nosotros::class, 'nosotros']);
-
-Route::get('docentes', [Docentes::class, 'docentes']);
+Route::resource('docentes', DocentesController::class);
 
 
