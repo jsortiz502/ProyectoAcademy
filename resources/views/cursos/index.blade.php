@@ -5,7 +5,7 @@
 @section('contenido')
 <br>
 
-<center><h4>Aqui encuentra el listado de cursos</h4></center>
+<center><h4>Listado de Cursos</h4></center>
     <br>
     {{--Con foreach se recorre el array o la lista--}}
     <div class="row">

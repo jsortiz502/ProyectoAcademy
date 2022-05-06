@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storagePersonajeRequest;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 
@@ -36,8 +37,14 @@ class LaraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storagePersonajeRequest $request)
     {
+        //Estas son las validaciones
+        $validacionesDatos = $request->validate([
+            //ESTO ES UNA VALIDACION
+            /*'nombre'=>'required|max:10',
+            'imagen'=>'required|image'*/
+        ]);
         //all me trae toda la informacion almacenda de la peticion (request)
         $cursito = new Curso();
         //crear una instancia del modelo curso para manipular la tabla
@@ -112,7 +119,16 @@ class LaraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cursito = Curso::find($id);
+        $urlImagenBD = $cursito->imagen;
+        //return $urlImagenBD;
+        $nombreImagen = str_replace('public/','\storage\\',$urlImagenBD);
+        //return $nombreImagen;
+        $rutaCompleta = public_path().$nombreImagen;
+        //return $rutaCompleta;
+        unlink($rutaCompleta);
+        $cursito->delete();
+        return 'Eliminado correctamente';
     }
 
 }

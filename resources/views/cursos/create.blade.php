@@ -10,6 +10,16 @@
         <form action="/laravel" method="POST" enctype="multipart/form-data">
             {{--csrf es una proteccion contra ataques--}}
             @csrf
+            @if ($errors->any())
+                @foreach ($errors->all() as $alerta)
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            <li><p>{{$alerta}}</p></li>
+                        </ul>
+                    </div>
+                @endforeach
+            @endif
+
             <div class="form-group">
             <label for="nombre">Nombre del curso</label>
             <input type="text" name="nombre" id="nombre" class="form-control">

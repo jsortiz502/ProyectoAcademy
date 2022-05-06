@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\storageDocentejeRequest;
 use App\Models\Docente;
 use Illuminate\Http\Request;
 
@@ -34,7 +36,7 @@ class DocentesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storageDocentejeRequest $request)
     {
         $docente = new Docente();
         $docente->nombre = $request->input('nombre');
@@ -105,6 +107,11 @@ class DocentesController extends Controller
         $urlImagenBD = $docente->foto;
         //return $urlImagenBD;
         $nombreImagen = str_replace('public/','\storage\\',$urlImagenBD);
-        return $nombreImagen;
+        //return $nombreImagen;
+        $rutaCompleta = public_path().$nombreImagen;
+        //return $rutaCompleta;
+        unlink($rutaCompleta);
+        $docente->delete();
+        return 'Eliminado correctamente';
     }
 }

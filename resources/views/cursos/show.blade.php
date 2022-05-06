@@ -10,4 +10,11 @@
     <h3><p class="card-text text-center">{{$cursito->descripcion}}</p></h3>
     <br>
     <center><a href="/laravel/{{$cursito->id}}/edit" class="btn btn-primary">Editar</a></center>
+    <br>
+
+    <form class="form-group" action="/laravel/{{$cursito->id}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <center><button type="submit" class="btn btn-danger">Eliminar</button></center>
+    </form>
 @endsection
